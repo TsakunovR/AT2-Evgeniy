@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from pages.BasePage import BasePage
 
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
@@ -15,3 +16,11 @@ class LoginPageLocators:
     GOOGLE_BUTTON = (By.XPATH, '//*[@data-l="t,google"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
     APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
+
+class LoginPageHelper(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
