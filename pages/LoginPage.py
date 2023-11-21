@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 
+
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
     PROFILE_TAB = (By.XPATH, '//*[@data-l="t,profiles_tab"]')
@@ -16,6 +17,8 @@ class LoginPageLocators:
     GOOGLE_BUTTON = (By.XPATH, '//*[@data-l="t,google"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
     APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
+    ERROR_FIELD = (By.XPATH, '//div[@class="input-e login_error"]')
+
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
@@ -24,3 +27,15 @@ class LoginPageHelper(BasePage):
 
     def check_page(self):
         self.find_element(LoginPageLocators.LOGIN_BUTTON)
+
+    def set_login(self, login):
+        return self.find_element(LoginPageLocators.LOGIN_INPUT).send_keys(login)
+
+    def set_password(self, password):
+        return self.find_element(LoginPageLocators.PASSWORD_INPUT).send_keys(password)
+
+    def click_login_button(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_FIELD).text
