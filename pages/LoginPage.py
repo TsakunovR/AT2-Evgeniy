@@ -4,7 +4,6 @@ from pages.BasePage import BasePage
 
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
-    PROFILE_TAB = (By.XPATH, '//*[@data-l="t,profiles_tab"]')
     QR_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
     LOGIN_INPUT = (By.ID, 'field_email')
     PASSWORD_INPUT = (By.ID, 'field_password')
@@ -13,7 +12,7 @@ class LoginPageLocators:
     RECOVERY_BUTTON = (By.XPATH, '//*[@data-l="t,restore"]')
     REGISTER_BUTT0N = (By.XPATH, '//*[@class="button-pro __sec mb-3x"]')
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
-    MAILRU_BUTTON = (By.XPATH, 'data-l="t,mailru"')
+    MAILRU_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     GOOGLE_BUTTON = (By.XPATH, '//*[@data-l="t,google"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
     APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
@@ -26,7 +25,19 @@ class LoginPageHelper(BasePage):
         self.check_page()
 
     def check_page(self):
+        self.find_element(LoginPageLocators.LOGIN_INPUT)
+        self.find_element(LoginPageLocators.PASSWORD_INPUT)
         self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.QR_BUTTON)
+        self.find_element(LoginPageLocators.RECOVERY_BUTTON)
+        self.find_element(LoginPageLocators.REGISTER_BUTT0N)
+        self.find_element(LoginPageLocators.VK_BUTTON)
+        self.find_element(LoginPageLocators.MAILRU_BUTTON)
+        self.find_element(LoginPageLocators.GOOGLE_BUTTON)
+        self.find_element(LoginPageLocators.YANDEX_BUTTON)
+        self.find_element(LoginPageLocators.APPLE_BUTTON)
+        self.find_element(LoginPageLocators.LOGIN_TAB)
+        self.find_element(LoginPageLocators.QR_TAB)
 
     def set_login(self, login):
         return self.find_element(LoginPageLocators.LOGIN_INPUT).send_keys(login)
