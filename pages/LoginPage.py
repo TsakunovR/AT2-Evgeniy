@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
+import allure
 
 
 class LoginPageLocators:
@@ -24,6 +25,7 @@ class LoginPageHelper(BasePage):
         super().__init__(driver)
         self.check_page()
 
+    @allure.step('Проверяем наличие элементов в форме авторизации')
     def check_page(self):
         self.find_element(LoginPageLocators.LOGIN_INPUT)
         self.find_element(LoginPageLocators.PASSWORD_INPUT)
@@ -39,14 +41,18 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.LOGIN_TAB)
         self.find_element(LoginPageLocators.QR_TAB)
 
+    @allure.step('Вводим значение в поле "Логин"')
     def set_login(self, login):
         return self.find_element(LoginPageLocators.LOGIN_INPUT).send_keys(login)
 
+    @allure.step('Вводим значение в поле "Пароль"')
     def set_password(self, password):
         return self.find_element(LoginPageLocators.PASSWORD_INPUT).send_keys(password)
 
+    @allure.step('Кликаем на кнопку "Войти в одноклассники"')
     def click_login_button(self):
         self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
 
+    @allure.step("Проверяем текст ошибки")
     def get_error_text(self):
         return self.find_element(LoginPageLocators.ERROR_FIELD).text
