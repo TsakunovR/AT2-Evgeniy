@@ -1,7 +1,7 @@
+import allure
 import pytest
 from selenium import webdriver
 from pages.BasePage import BasePage
-
 
 URL = "https://ok.ru"
 
@@ -13,6 +13,7 @@ def browser():
     driver.quit()
 
 
+@allure.title(f"Открываем браузер и переходим на страницу: {URL}")
 @pytest.fixture
 def open_base_url(browser):
     base_page = BasePage(browser)

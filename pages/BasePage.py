@@ -1,5 +1,6 @@
 from selenium.webdriver.support.wait import WebDriverWait as WDW
 from selenium.webdriver.support import expected_conditions as ec
+import allure
 
 
 class BasePage:
@@ -16,3 +17,7 @@ class BasePage:
 
     def go_to_url(self, url):
         return self.driver.get(url)
+
+    @allure.step('Проверяем переход на страницу "Восстановление доступа"')
+    def get_url(self):
+        return self.driver.current_url

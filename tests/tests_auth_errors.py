@@ -3,11 +3,11 @@ from BaseTest import open_base_url
 from pages.LoginPage import LoginPageHelper
 import allure
 
-EMPTY_FORM_ERROR = "Введите логин"
-EMPTY_PASSWORD_ERROR = "Введите пароль"
-INCORRECT_PASSWORD_ERROR = "Неправильно указан логин и/или пароль"
-LOGIN = "Иван"
-PASSWORD = "12345"
+EMPTY_FORM_ERROR = 'Введите логин'
+EMPTY_PASSWORD_ERROR = 'Введите пароль'
+INCORRECT_PASSWORD_ERROR = 'Неправильно указан логин и/или пароль'
+LOGIN = 'Иван'
+PASSWORD = '12345'
 
 
 @allure.suite('Проверка формы авторизации')

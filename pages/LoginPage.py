@@ -10,8 +10,8 @@ class LoginPageLocators:
     PASSWORD_INPUT = (By.ID, 'field_password')
     LOGIN_BUTTON = (By.XPATH, '//*[@data-l="t,sign_in"]')
     QR_BUTTON = (By.XPATH, '//*[@data-l="t,get_qr"]')
-    RECOVERY_BUTTON = (By.XPATH, '//*[@data-l="t,restore"]')
-    REGISTER_BUTT0N = (By.XPATH, '//*[@class="button-pro __sec mb-3x"]')
+    RECOVERY_BUTTON = (By.XPATH, '//a[@data-l="t,restore"]')
+    REGISTER_BUTT0N = (By.XPATH, '//*[@data-l="t,register"]')
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
     MAILRU_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     GOOGLE_BUTTON = (By.XPATH, '//*[@data-l="t,google"]')
@@ -53,6 +53,6 @@ class LoginPageHelper(BasePage):
     def click_login_button(self):
         self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
 
-    @allure.step("Проверяем текст ошибки")
+    @allure.step('Проверяем текст ошибки')
     def get_error_text(self):
         return self.find_element(LoginPageLocators.ERROR_FIELD).text
