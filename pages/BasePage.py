@@ -18,6 +18,6 @@ class BasePage:
     def go_to_url(self, url):
         return self.driver.get(url)
 
-    @allure.step('Проверяем переход на страницу "Восстановление доступа"')
+    @allure.step('Проверяем переход на страницу')
     def get_url(self):
         return self.driver.current_url
