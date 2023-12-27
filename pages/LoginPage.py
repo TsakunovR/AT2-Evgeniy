@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 import allure
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class LoginPageLocators:
@@ -11,13 +12,15 @@ class LoginPageLocators:
     LOGIN_BUTTON = (By.XPATH, '//*[@data-l="t,sign_in"]')
     QR_BUTTON = (By.XPATH, '//*[@data-l="t,get_qr"]')
     RECOVERY_BUTTON = (By.XPATH, '//a[@data-l="t,restore"]')
-    REGISTER_BUTT0N = (By.XPATH, '//*[@data-l="t,register"]')
+    REGISTER_BUTT0N = (By.XPATH, '//div[@class="external-oauth-login-footer"]//a[@data-l="t,register"]')
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
     MAILRU_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     GOOGLE_BUTTON = (By.XPATH, '//*[@data-l="t,google"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
     APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
     ERROR_FIELD = (By.XPATH, '//div[@class="input-e login_error"]')
+    FOOTER_MORE_BUTTON = (By.XPATH, '//*[@data-popup-selector=".more-popup"]')
+    FOOTER_DOCS_BUTTON = (By.XPATH, '//a[@href="/agreementpage?st.cmd=helpAgreementPage&st._aid=FatFooter_helpAgreementPage"]')
 
 
 class LoginPageHelper(BasePage):
@@ -56,3 +59,17 @@ class LoginPageHelper(BasePage):
     @allure.step('Проверяем текст ошибки')
     def get_error_text(self):
         return self.find_element(LoginPageLocators.ERROR_FIELD).text
+
+    @allure.step('Кликаем на кнопку "Не получается войти?"')
+    def click_recovery_button(self):
+        self.find_element(LoginPageLocators.RECOVERY_BUTTON).click()
+
+    @allure.step('Кликаем на кнопку "Зарегистрироваться"')
+    def click_register_button(self):
+        self.find_element(LoginPageLocators.REGISTER_BUTT0N).click()
+
+    @allure.step('Кликаем на кнопку "Политики и соглашения" в дропдауне "Еще" в футере')
+    def click_agreement_button(self):
+        footer_more_button = self.find_element(LoginPageLocators.FOOTER_MORE_BUTTON)
+        footer_docs_button = self.find_element(LoginPageLocators.FOOTER_DOCS_BUTTON)
+        ActionChains(self.driver).move_to_element(footer_more_button).click(footer_docs_button).perform()
